@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: write
+
 jobs:
   build-staging:
     name: Release Build against Staging Dalamud and deploy to MyDalamudPlugins

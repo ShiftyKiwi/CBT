@@ -62,6 +62,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: output/latest.zip
+        continue-on-error: true
 
       - name: Clone plugin hosting repo
         run: git clone https://github.com/${{ github.repository_owner }}/MyDalamudPlugins.git

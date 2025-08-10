@@ -83,7 +83,7 @@ jobs:
           $repoJsonRaw = Get-Content $repoJsonPath -Raw
           $repoJson = $repoJsonRaw | ConvertFrom-Json
           
-          if (-not ($repoJson -is [System.Collections.IEnumerable])) {
+          if ($repoJson -isnot [System.Collections.IList]) {
             $repoJson = @($repoJson)
           }
           

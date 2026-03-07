@@ -4,9 +4,9 @@
     "Name": "CBT",
     "Description": "This plugin allows the configuration and customization of in-game flytext.",
     "InternalName": "CBT",
-    "AssemblyVersion": "0.0.3.7",
+    "AssemblyVersion": "0.0.3.8",
     "RepoUrl": "https://github.com/ShiftyKiwi/CBT",
-    "ApplicableVersion": "4.45",
+    "ApplicableVersion": "any",
     "Tags": [
       "combat",
       "flytext",
@@ -20,6 +20,6 @@
     "DownloadLinkTesting": "https://github.com/ShiftyKiwi/CBT/releases/latest/download/latest.zip",
     "DownloadLinkUpdate": "https://github.com/ShiftyKiwi/CBT/releases/latest/download/latest.zip",
     "DownloadCount": 0,
-    "LastUpdated": 1772875587
+    "LastUpdated": 1772876447
   }
 ]

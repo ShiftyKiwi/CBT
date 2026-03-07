@@ -3,7 +3,7 @@
     "Name": "CBT",
     "Punchline": "A configurable ImGUI FlyText replacement.",
     "Description": "This plugin allows the configuration and customization of in-game flytext.",
-    "ApplicableVersion": "4.45",
+    "ApplicableVersion": "any",
     "RepoUrl": "https://github.com/ShiftyKiwi/CBT",
     "IconUrl": "https://raw.githubusercontent.com/ShiftyKiwi/CBT/main/res/icon.png",
     "ImageUrls": [],

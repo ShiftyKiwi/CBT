@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Authors>cultbaus</Authors>
     <Company>-</Company>
-    <Version>0.0.3.7</Version>
+    <Version>0.0.3.8</Version>
     <Description>This plugin manipulates flytext.</Description>
     <Copyright>-</Copyright>
     <PackageProjectUrl>https://github.com/ShiftyKiwi/CBT</PackageProjectUrl>
-    <ApplicableVersion>4.45</ApplicableVersion>
+    <ApplicableVersion>any</ApplicableVersion>
   </PropertyGroup>
 
   <PropertyGroup>

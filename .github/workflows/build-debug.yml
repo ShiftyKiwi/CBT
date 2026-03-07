@@ -22,7 +22,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.x.x'
+          dotnet-version: '10.x.x'
 
       # Cache the nuget packages.
       - name: Cache Dependencies
@@ -38,7 +38,7 @@ jobs:
       # Create the required directory structure and download/extract Dalamud.
       - name: Download and extract Dalamud (${{ env.DALAMUD_VERSION_NAME }})
         run: |
-          mkdir -p "$env:AppData\XIVLauncher\addon\Hooks\dev"
+          New-Item -ItemType Directory -Path "$env:AppData\XIVLauncher\addon\Hooks\dev" -Force | Out-Null
           Invoke-WebRequest -Uri "${{ env.DALAMUD_VERSION_URL }}" -OutFile "dalamud.zip"
           Expand-Archive -Path "dalamud.zip" -DestinationPath "$env:AppData\XIVLauncher\addon\Hooks\dev" -Force
 
@@ -78,7 +78,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.x.x'
+          dotnet-version: '10.x.x'
 
       # Cache the nuget packages
       - name: Cache Dependencies
@@ -94,7 +94,7 @@ jobs:
       # Create the required directory structure and download/extract Dalamud.
       - name: Download and extract Dalamud (${{ env.DALAMUD_VERSION_NAME }})
         run: |
-          mkdir -p "$env:AppData\XIVLauncher\addon\Hooks\dev"
+          New-Item -ItemType Directory -Path "$env:AppData\XIVLauncher\addon\Hooks\dev" -Force | Out-Null
           Invoke-WebRequest -Uri "${{ env.DALAMUD_VERSION_URL }}" -OutFile "dalamud.zip"
           Expand-Archive -Path "dalamud.zip" -DestinationPath "$env:AppData\XIVLauncher\addon\Hooks\dev" -Force
 

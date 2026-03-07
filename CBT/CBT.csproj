@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Dalamud.NET.Sdk/13.0.0">
+<Project Sdk="Dalamud.NET.Sdk/14.0.2">
   <PropertyGroup>
     <Authors>cultbaus</Authors>
     <Company>-</Company>
-    <Version>0.0.3.6</Version>
+    <Version>0.0.3.7</Version>
     <Description>This plugin manipulates flytext.</Description>
     <Copyright>-</Copyright>
-    <PackageProjectUrl>https://github.com/cultbaus/CBT</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ShiftyKiwi/CBT</PackageProjectUrl>
+    <ApplicableVersion>4.45</ApplicableVersion>
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net9.0-windows</TargetFramework>
-    <Platforms>x64</Platforms>
     <Nullable>enable</Nullable>
-    <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>

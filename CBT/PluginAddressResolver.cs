@@ -2,6 +2,7 @@ namespace CBT;
 
 using System;
 using Dalamud.Game;
+using Dalamud.Plugin.Services;
 
 /// <summary>
 /// Dalamud address resolver.

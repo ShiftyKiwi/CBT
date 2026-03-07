@@ -93,7 +93,7 @@ public unsafe partial class PluginManager
     /// Gets the Local Player from the Dalamud client state.
     /// </summary>
     public static IPlayerCharacter? LocalPlayer
-        => Service.ClientState.LocalPlayer;
+        => Service.ObjectTable.LocalPlayer;
 
     /// <summary>
     /// Get the config for the kind.

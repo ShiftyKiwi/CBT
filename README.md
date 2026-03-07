@@ -18,7 +18,7 @@ An ImGui replacement for FlyText in Final Fantasy XIV.
 
 I'll preface this section saying that, at the time of writing, this is still very much in development, and all releases should be considered unstable. There *will* be breaking changes that will not have migration support. You have been warned!
 
-Add the repository to your custom repos list in Dalamud -> Settings -> Experimental: `https://raw.githubusercontent.com/cultbaus/MyDalamudPlugins/main/repo.json`, then install the plugin. Use `/cbt` to configure.
+Add the repository to your custom repos list in Dalamud -> Settings -> Experimental: `https://raw.githubusercontent.com/ShiftyKiwi/CBT/main/pluginmaster.json`, then install the plugin. Use `/cbt` to configure.
 
 # Prior Art
 

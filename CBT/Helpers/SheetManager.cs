@@ -1,5 +1,6 @@
 namespace CBT.Helpers;
 
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Lumina.Excel;
 using Lumina.Excel.Sheets;
@@ -18,6 +19,7 @@ public unsafe class SheetManager : S.IDisposable
     private readonly Dictionary<int, Action?> actionCache = [];
     private readonly Dictionary<int, Status?> statusCache = [];
     private readonly Dictionary<int, Item?> itemCache = [];
+    private readonly ConcurrentDictionary<int, byte> loggedInvalidStatusIds = [];
 
     /// <inheritdoc/>
     public void Dispose()
@@ -79,34 +81,89 @@ public unsafe class SheetManager : S.IDisposable
 
     private Action? GetActionRow(int actionID)
     {
-        var row = LuminaActionSheet?.GetRow((uint)actionID);
-        if (row != null)
+        if (this.actionCache.TryGetValue(actionID, out var cachedAction))
         {
-            this.actionCache[actionID] = row;
+            return cachedAction;
         }
 
-        return this.actionCache[actionID];
+        if (actionID < 0)
+        {
+            this.actionCache[actionID] = null;
+            return null;
+        }
+
+        try
+        {
+            var row = LuminaActionSheet?.GetRow((uint)actionID);
+            this.actionCache[actionID] = row;
+            return row;
+        }
+        catch (S.ArgumentOutOfRangeException)
+        {
+            this.actionCache[actionID] = null;
+            return null;
+        }
     }
 
     private Status? GetStatusRow(int value1)
     {
-        var row = LuminaStatusSheet?.GetRow((uint)value1);
-        if (row != null)
+        if (this.statusCache.TryGetValue(value1, out var cachedStatus))
         {
-            this.statusCache[value1] = row;
+            return cachedStatus;
         }
 
-        return this.statusCache[value1];
+        if (value1 < 0)
+        {
+            this.LogInvalidStatusIdOnce(value1);
+            this.statusCache[value1] = null;
+            return null;
+        }
+
+        try
+        {
+            var row = LuminaStatusSheet?.GetRow((uint)value1);
+            this.statusCache[value1] = row;
+            return row;
+        }
+        catch (S.ArgumentOutOfRangeException)
+        {
+            this.LogInvalidStatusIdOnce(value1);
+            this.statusCache[value1] = null;
+            return null;
+        }
     }
 
     private Item? GetItemRow(int value1)
     {
-        var row = LuminaItemSheet?.GetRow((uint)value1);
-        if (row != null)
+        if (this.itemCache.TryGetValue(value1, out var cachedItem))
         {
-            this.itemCache[value1] = row;
+            return cachedItem;
         }
 
-        return this.itemCache[value1];
+        if (value1 < 0)
+        {
+            this.itemCache[value1] = null;
+            return null;
+        }
+
+        try
+        {
+            var row = LuminaItemSheet?.GetRow((uint)value1);
+            this.itemCache[value1] = row;
+            return row;
+        }
+        catch (S.ArgumentOutOfRangeException)
+        {
+            this.itemCache[value1] = null;
+            return null;
+        }
+    }
+
+    private void LogInvalidStatusIdOnce(int value1)
+    {
+        if (this.loggedInvalidStatusIds.TryAdd(value1, 0))
+        {
+            Service.PluginLog.Debug($"Ignoring invalid status rowId {value1} (uint: {(uint)value1}).");
+        }
     }
 }

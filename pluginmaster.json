@@ -4,7 +4,7 @@
     "Name": "CBT",
     "Description": "This plugin allows the configuration and customization of in-game flytext.",
     "InternalName": "CBT",
-    "AssemblyVersion": "0.0.3.9",
+    "AssemblyVersion": "0.0.3.10",
     "RepoUrl": "https://github.com/ShiftyKiwi/CBT",
     "ApplicableVersion": "any",
     "Tags": [

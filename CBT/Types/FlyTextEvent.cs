@@ -191,17 +191,21 @@ public unsafe partial class FlyTextEvent
     {
         get
         {
-            if (this.Kind.IsStatus())
-            {
-                return Service.Sheet.GetIconForStatus(this.Value1);
-            }
-
             if (this.Kind.IsOther())
             {
                 return Service.Sheet.GetIconForItem(this.ActionID);
             }
 
-            return Service.Sheet.GetIconForAction(this.ActionID);
+            if (!this.Kind.IsStatus())
+            {
+                return Service.Sheet.GetIconForAction(this.ActionID);
+            }
+
+            var statusIcon = Service.Sheet.GetIconForStatus(this.Value1);
+
+            return statusIcon != 0
+                ? statusIcon
+                : Service.Sheet.GetIconForAction(this.ActionID);
         }
     }
 
@@ -212,17 +216,21 @@ public unsafe partial class FlyTextEvent
     {
         get
         {
-            if (this.Kind.IsStatus())
-            {
-                return Service.Sheet.GetNameForStatus(this.Value1);
-            }
-
             if (this.Kind.IsOther())
             {
                 return Service.Sheet.GetNameForItem(this.ActionID);
             }
 
-            return Service.Sheet.GetNameForAction(this.ActionID);
+            if (!this.Kind.IsStatus())
+            {
+                return Service.Sheet.GetNameForAction(this.ActionID);
+            }
+
+            var statusName = Service.Sheet.GetNameForStatus(this.Value1);
+
+            return statusName.ExtractText() != string.Empty
+                ? statusName
+                : Service.Sheet.GetNameForAction(this.ActionID);
         }
     }
 

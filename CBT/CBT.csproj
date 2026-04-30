@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Dalamud.NET.Sdk/14.0.2">
+<Project Sdk="Dalamud.NET.Sdk/15.0.0">
   <PropertyGroup>
     <Authors>cultbaus</Authors>
     <Company>-</Company>
-    <Version>0.0.3.12</Version>
+    <Version>0.0.3.13</Version>
     <Description>This plugin manipulates flytext.</Description>
     <Copyright>-</Copyright>
     <PackageProjectUrl>https://github.com/ShiftyKiwi/CBT</PackageProjectUrl>

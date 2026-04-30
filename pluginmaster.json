@@ -3,9 +3,9 @@
     "Author": "cultbaus",
     "Name": "CBT",
     "Description": "This plugin allows the configuration and customization of in-game flytext.",
-    "Changelog": "Validated for FFXIV patch 7.45 HotFix Patch 2.",
+    "Changelog": "Updated for FFXIV Patch 7.5 and Dalamud API15.",
     "InternalName": "CBT",
-    "AssemblyVersion": "0.0.3.12",
+    "AssemblyVersion": "0.0.3.13",
     "RepoUrl": "https://github.com/ShiftyKiwi/CBT",
     "ApplicableVersion": "any",
     "Tags": [
@@ -13,7 +13,7 @@
       "flytext",
       "plugin"
     ],
-    "DalamudApiLevel": 14,
+    "DalamudApiLevel": 15,
     "DownloadLinkInstall": "https://github.com/ShiftyKiwi/CBT/releases/latest/download/latest.zip",
     "IconUrl": "https://raw.githubusercontent.com/ShiftyKiwi/CBT/main/res/icon.png",
     "IsHide": false,
@@ -21,7 +21,7 @@
     "DownloadLinkTesting": "https://github.com/ShiftyKiwi/CBT/releases/latest/download/latest.zip",
     "DownloadLinkUpdate": "https://github.com/ShiftyKiwi/CBT/releases/latest/download/latest.zip",
     "DownloadCount": 0,
-    "LastUpdated": 1774365874
+    "LastUpdated": 1777533722
   }
 ]
 

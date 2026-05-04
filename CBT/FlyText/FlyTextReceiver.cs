@@ -20,8 +20,8 @@ using DalamudFlyText = Dalamud.Game.Gui.FlyText;
 public unsafe partial class FlyTextReceiver : IDisposable
 {
     private readonly Hook<AddScreenLogWithKindDelegate> addScreenLogWithKindHook;
-    private readonly Hook<AddScreenLogDelegate> addScreenLogHook;
-    private readonly Hook<ReceiveActionEffectDelegate> receiveActionEffectHook;
+    private readonly Hook<AddScreenLogDelegate>? addScreenLogHook;
+    private readonly Hook<ReceiveActionEffectDelegate>? receiveActionEffectHook;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FlyTextReceiver"/> class.
@@ -34,11 +34,17 @@ public unsafe partial class FlyTextReceiver : IDisposable
         this.addScreenLogWithKindHook = gameInteropProvider.HookFromAddress<AddScreenLogWithKindDelegate>(Service.Address.AddScreenLogWithKind, this.AddScreenLogWithKindDetour);
         this.addScreenLogWithKindHook.Enable();
 
-        this.addScreenLogHook = gameInteropProvider.HookFromAddress<AddScreenLogDelegate>(Service.Address.AddScreenLog, this.AddScreenLogDetour);
-        // this.addScreenLogHook.Enable();
+        if (Service.Address.AddScreenLog != IntPtr.Zero)
+        {
+            this.addScreenLogHook = gameInteropProvider.HookFromAddress<AddScreenLogDelegate>(Service.Address.AddScreenLog, this.AddScreenLogDetour);
+            // this.addScreenLogHook.Enable();
+        }
 
-        this.receiveActionEffectHook = gameInteropProvider.HookFromAddress<ReceiveActionEffectDelegate>(Service.Address.ReceiveActionEffect, this.ReceiveActionEffectDetour);
-        // this.receiveActionEffectHook.Enable();
+        if (Service.Address.ReceiveActionEffect != IntPtr.Zero)
+        {
+            this.receiveActionEffectHook = gameInteropProvider.HookFromAddress<ReceiveActionEffectDelegate>(Service.Address.ReceiveActionEffect, this.ReceiveActionEffectDetour);
+            // this.receiveActionEffectHook.Enable();
+        }
     }
 
     private delegate void AddScreenLogWithKindDelegate(
@@ -70,10 +76,10 @@ public unsafe partial class FlyTextReceiver : IDisposable
         this.addScreenLogWithKindHook.Dispose();
 
         // this.addScreenLogHook.Disable();
-        this.addScreenLogHook.Dispose();
+        this.addScreenLogHook?.Dispose();
 
         // this.receiveActionEffectHook.Disable();
-        this.receiveActionEffectHook.Dispose();
+        this.receiveActionEffectHook?.Dispose();
 
         Service.FlyTextGui.FlyTextCreated -= this.FlyTextCreated;
 
@@ -116,7 +122,7 @@ public unsafe partial class FlyTextReceiver : IDisposable
 
     private void AddScreenLogDetour(long screenLogManager, FlyTextCreation* flyTextCreation)
     {
-        this.addScreenLogHook.Original(screenLogManager, flyTextCreation);
+        this.addScreenLogHook!.Original(screenLogManager, flyTextCreation);
     }
 
     private void ReceiveActionEffectDetour(
@@ -127,7 +133,7 @@ public unsafe partial class FlyTextReceiver : IDisposable
         TargetEffects* effects,
         GameObjectId* targetEntityIds)
     {
-        this.receiveActionEffectHook.Original(casterEntityId, casterPtr, targetPos, header, effects, targetEntityIds);
+        this.receiveActionEffectHook!.Original(casterEntityId, casterPtr, targetPos, header, effects, targetEntityIds);
     }
 
     private void FlyTextCreated(

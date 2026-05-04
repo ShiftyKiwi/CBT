@@ -29,10 +29,23 @@ public class PluginAddressResolver : BaseAddressResolver
     {
         this.AddScreenLogWithKind = scanner.ScanText("E8 ?? ?? ?? ?? BF ?? ?? ?? ?? EB 39");
         this.AddScreenLog = scanner.ScanText("E8 ?? ?? ?? ?? 45 85 E4 0F 84 ?? ?? ?? ?? 48 8B 0D");
-        this.ReceiveActionEffect = scanner.ScanText("40 55 56 57 41 54 41 55 41 56 41 57 48 8D AC 24");
+        this.ReceiveActionEffect = ScanOptional(scanner, "40 55 56 57 41 54 41 55 41 56 41 57 48 8D AC 24", nameof(this.ReceiveActionEffect));
 
         Service.PluginLog.Debug($"{nameof(this.AddScreenLogWithKind)}   0x{this.AddScreenLogWithKind:X}");
         Service.PluginLog.Debug($"{nameof(this.AddScreenLog)}           0x{this.AddScreenLog:X}");
         Service.PluginLog.Debug($"{nameof(this.ReceiveActionEffect)}    0x{this.ReceiveActionEffect:X}");
+    }
+
+    private static IntPtr ScanOptional(ISigScanner scanner, string signature, string name)
+    {
+        try
+        {
+            return scanner.ScanText(signature);
+        }
+        catch (Exception ex)
+        {
+            Service.PluginLog.Warning(ex, $"Optional signature {name} was not found; related inactive hook will be skipped.");
+            return IntPtr.Zero;
+        }
     }
 }
